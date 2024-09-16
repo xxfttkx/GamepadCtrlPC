@@ -1,0 +1,7 @@
+﻿  FileName.cpp
+F:\Code\ConsoleCode\Project1\Project1\FileName.cpp(6,19): warning C4305: “初始化”: 从“double”到“float”截断
+F:\Code\ConsoleCode\Project1\Project1\FileName.cpp(7,24): warning C4305: “初始化”: 从“double”到“float”截断
+F:\Code\ConsoleCode\Project1\Project1\FileName.cpp(170,23): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+  Project1.vcxproj -> F:\Code\ConsoleCode\Project1\x64\Debug\Project1.exe
+  'pwsh.exe' 不是内部或外部命令，也不是可运行的程序
+  或批处理文件。
