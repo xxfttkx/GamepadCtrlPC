@@ -1,6 +1,6 @@
 #pragma once
 #include "BaseCtrl.h"
-class Cursor : public BaseCtrl {
+class Keyboard : public BaseCtrl {
 public:
 	void MoveLeftStick(int x, int y) override;
 	void MoveRightStick(int x, int y) override;
@@ -12,8 +12,6 @@ public:
 	void RButton() override;
 	void ZLButton() override;
 	void ZRButton() override;
-
 private:
-	float sensitivity = 0.5;
-	float deltaSensitivity = 0.05;
+
 };

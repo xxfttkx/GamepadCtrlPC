@@ -1,7 +1,22 @@
-﻿  FileName.cpp
-F:\Code\ConsoleCode\Project1\Project1\FileName.cpp(6,19): warning C4305: “初始化”: 从“double”到“float”截断
-F:\Code\ConsoleCode\Project1\Project1\FileName.cpp(7,24): warning C4305: “初始化”: 从“double”到“float”截断
-F:\Code\ConsoleCode\Project1\Project1\FileName.cpp(170,23): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-  Project1.vcxproj -> F:\Code\ConsoleCode\Project1\x64\Debug\Project1.exe
+﻿F:\VS2022\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: 中间目录(x64\Debug\)包含从另一个项目(Project1.vcxproj)共享的文件。   这会导致错误的清除和重新生成行为。
+  Utils.cpp
+  main.cpp
+F:\Code\ConsoleCode\Project1\Project1\Cursor.h(18,27): warning C4305: “初始化”: 从“double”到“float”截断
+  (编译源文件“main.cpp”)
+  
+F:\Code\ConsoleCode\Project1\Project1\main.cpp(67,16): warning C4553: “==”: 未使用表达式结果；是否打算使用“=”?
+F:\Code\ConsoleCode\Project1\Project1\main.cpp(82,63): warning C4244: “参数”: 从“_Rep”转换到“int”，可能丢失数据
+F:\Code\ConsoleCode\Project1\Project1\main.cpp(82,63): warning C4244:         with
+F:\Code\ConsoleCode\Project1\Project1\main.cpp(82,63): warning C4244:         [
+F:\Code\ConsoleCode\Project1\Project1\main.cpp(82,63): warning C4244:             _Rep=float
+F:\Code\ConsoleCode\Project1\Project1\main.cpp(82,63): warning C4244:         ]
+F:\Code\ConsoleCode\Project1\Project1\main.cpp(82,36): warning C4244: “参数”: 从“_Rep”转换到“int”，可能丢失数据
+F:\Code\ConsoleCode\Project1\Project1\main.cpp(82,36): warning C4244:         with
+F:\Code\ConsoleCode\Project1\Project1\main.cpp(82,36): warning C4244:         [
+F:\Code\ConsoleCode\Project1\Project1\main.cpp(82,36): warning C4244:             _Rep=float
+F:\Code\ConsoleCode\Project1\Project1\main.cpp(82,36): warning C4244:         ]
+F:\Code\ConsoleCode\Project1\Project1\main.cpp(90,23): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+  正在生成代码...
+  Project1.vcxproj -> F:\Code\ConsoleCode\Project1\x64\Debug\GamepadCtrlPC.exe
   'pwsh.exe' 不是内部或外部命令，也不是可运行的程序
   或批处理文件。
