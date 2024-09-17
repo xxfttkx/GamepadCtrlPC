@@ -58,13 +58,17 @@ int main(int argc, char* argv[]) {
 				else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_Y) {
 					baseCtrl->YButton();
 				}
+				else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_LEFTSHOULDER) {
+					baseCtrl->LButton();
+				}
 				else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_RIGHTSHOULDER) {
-					// baseCtrl->RButton(); 
-					// todo
+					baseCtrl->RButton();
+				}
+				else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_GUIDE) {
 					if (baseCtrl == &cursor)
 						baseCtrl = &keyboard;
 					else
-						baseCtrl == &cursor;
+						baseCtrl = &cursor;
 				}
 			}
 			else if (event.type == SDL_CONTROLLERAXISMOTION) {
@@ -96,6 +100,11 @@ int main(int argc, char* argv[]) {
 		// ZR 按键值通常在 0 到 32767 之间
 		if (zrValue > 16000) {  // 可以根据需要调整阈值
 			baseCtrl->ZRButton();
+			SDL_Delay(100);
+		}
+		int zlValue = SDL_GameControllerGetAxis(controller, SDL_CONTROLLER_AXIS_TRIGGERLEFT);
+		if (zlValue > 16000) {  // 可以根据需要调整阈值
+			baseCtrl->ZLButton();
 			SDL_Delay(100);
 		}
 	}

@@ -33,3 +33,14 @@
 
 # vs
 .vs/
+*.vcxproj.user
+*.vcxproj.filters
+*.sdf
+*.opensdf
+*.suo
+
+# Build folders
+x64/
+x86/
+Debug/
+Release/

@@ -22,7 +22,7 @@
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{8f19b734-3835-4582-bf61-133e075cf1af}</ProjectGuid>
-    <RootNamespace>Project1</RootNamespace>
+    <RootNamespace>GamepadCtrlPC</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>GamepadCtrlPC</ProjectName>
   </PropertyGroup>
