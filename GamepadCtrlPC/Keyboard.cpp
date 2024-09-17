@@ -4,38 +4,39 @@
 
 void Keyboard::MoveLeftStick(int x, int y)
 {
+	MoveMouse(x, y);
 }
 
 void Keyboard::MoveRightStick(int x, int y)
 {
+	SimulateMouseWheelScroll(y);
 }
 
 void Keyboard::AButton()
 {
-	SimulateMouseClick();
+	// enter键
+	SimulateEnterKey();
 }
 
 void Keyboard::BButton()
 {
-	HWND hwnd = GetForegroundWindow();  // 获取当前活动窗口的句柄
-	if (hwnd) {
-		ShowWindow(hwnd, SW_MINIMIZE);  // 最小化窗口
-	}
-	else {
-		MessageBox(nullptr, L"No window is currently in the foreground.", L"Error", MB_OK | MB_ICONERROR);
-	}
+	MinimizeCurrentWindow();
 }
 
 void Keyboard::XButton()
 {
+	// 空格键
+	SimulateSpacebarPress();
 }
 
 void Keyboard::YButton()
 {
 }
 
+// 关闭当前窗口
 void Keyboard::LButton()
 {
+	CloseCurrentWindow();
 }
 
 void Keyboard::RButton()
@@ -48,4 +49,5 @@ void Keyboard::ZLButton()
 
 void Keyboard::ZRButton()
 {
+	SimulateSpacebarPress();
 }
