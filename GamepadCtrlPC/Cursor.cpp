@@ -4,18 +4,17 @@
 
 void Cursor::MoveLeftStick(int x, int y)
 {
-	int xDelta = static_cast<int>(x * sensitivity);
-	int yDelta = static_cast<int>(y * sensitivity);
+	int xDelta = static_cast<int>(x * leftSensitivity);
+	int yDelta = static_cast<int>(y * leftSensitivity);
 	if (xDelta != 0 || yDelta != 0)
 	{
 		MoveMouse(xDelta, yDelta);
 	}
-	MoveMouse(xDelta, yDelta);
 }
 
 void Cursor::MoveRightStick(int x, int y)
 {
-	SimulateMouseWheelScroll(y);
+	SimulateMouseWheelScroll(y*rightSensitivity);
 }
 
 void Cursor::AButton()
@@ -30,12 +29,36 @@ void Cursor::BButton()
 
 void Cursor::XButton()
 {
-	sensitivity -= deltaSensitivity;
+	SimulateMouseClick();
 }
 
 void Cursor::YButton()
 {
-	sensitivity += deltaSensitivity;
+	SimulateMouseClick();
+}
+
+void Cursor::UpButton()
+{
+	if (rightSensitivity < 10 * deltaRightSensitivity)
+		rightSensitivity += deltaRightSensitivity;
+}
+
+void Cursor::DownButton()
+{
+	if (rightSensitivity - deltaRightSensitivity > 0)
+		rightSensitivity -= deltaRightSensitivity;
+}
+
+void Cursor::LeftButton()
+{
+	if (leftSensitivity - deltaLeftSensitivity > 0)
+		leftSensitivity -= deltaLeftSensitivity;
+}
+
+void Cursor::RightButton()
+{
+	if (leftSensitivity < 10 * deltaLeftSensitivity)
+		leftSensitivity += deltaLeftSensitivity;
 }
 
 void Cursor::LButton()

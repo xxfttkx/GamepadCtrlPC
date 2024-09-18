@@ -8,10 +8,15 @@ public:
 	void BButton() override;
 	void XButton() override;
 	void YButton() override;
+	void UpButton() override;
+	void DownButton() override;
+	void LeftButton() override;
+	void RightButton() override;
 	void LButton() override;
 	void RButton() override;
 	void ZLButton() override;
 	void ZRButton() override;
 private:
-
+	float sensitivity = 0.1;
+	float deltaSensitivity = 0.03;
 };

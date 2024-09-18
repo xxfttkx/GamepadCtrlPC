@@ -170,3 +170,16 @@ void CaptureScreen() {
 	DeleteDC(hMemoryDC);
 	ReleaseDC(NULL, hScreenDC);
 }
+
+void SimulateKeyPress(WORD key) {
+	INPUT input = { 0 };
+	input.type = INPUT_KEYBOARD;
+	input.ki.wVk = key; // 设置虚拟键码
+
+	// 按下键
+	SendInput(1, &input, sizeof(INPUT));
+
+	// 释放键
+	input.ki.dwFlags = KEYEVENTF_KEYUP; // 设置为释放事件
+	SendInput(1, &input, sizeof(INPUT));
+}

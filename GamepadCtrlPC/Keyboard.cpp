@@ -4,17 +4,23 @@
 
 void Keyboard::MoveLeftStick(int x, int y)
 {
-	MoveMouse(x, y);
+	if (x > 10)SimulateKeyPress(0x41+('d'-'a'));
+	else if (x < -10)SimulateKeyPress(0x41);
+	if (y > 10)SimulateKeyPress(0x41 + ('s' - 'a'));
+	else if (y < -10)SimulateKeyPress(0x41 + ('w' - 'a'));
 }
 
 void Keyboard::MoveRightStick(int x, int y)
 {
-	SimulateMouseWheelScroll(y);
+	if (x > 100)SimulateKeyPress(VK_RIGHT);
+	else if (x < -100)SimulateKeyPress(VK_LEFT);
+	if (y > 100)SimulateKeyPress(VK_UP);
+	else if (y < -100)SimulateKeyPress(VK_DOWN);
 }
 
 void Keyboard::AButton()
 {
-	// enter¼ü
+	// Enter¼ü
 	SimulateEnterKey();
 }
 
@@ -30,6 +36,22 @@ void Keyboard::XButton()
 }
 
 void Keyboard::YButton()
+{
+}
+
+void Keyboard::UpButton()
+{
+}
+
+void Keyboard::DownButton()
+{
+}
+
+void Keyboard::LeftButton()
+{
+}
+
+void Keyboard::RightButton()
 {
 }
 

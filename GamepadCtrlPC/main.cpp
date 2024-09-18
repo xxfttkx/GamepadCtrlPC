@@ -76,16 +76,16 @@ int main(int argc, char* argv[]) {
 					CaptureScreen();
 				}
 				else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_UP) {
-
+					baseCtrl->UpButton();
 				}
 				else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_DOWN) {
-
+					baseCtrl->DownButton();
 				}
 				else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_LEFT) {
-
+					baseCtrl->LeftButton();
 				}
 				else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_RIGHT) {
-
+					baseCtrl->RightButton();
 				}
 			}
 			else if (event.type == SDL_CONTROLLERAXISMOTION) {
@@ -98,8 +98,8 @@ int main(int argc, char* argv[]) {
 					// 计算移动
 					int xAxis = SDL_GameControllerGetAxis(controller, SDL_CONTROLLER_AXIS_LEFTX);
 					int yAxis = SDL_GameControllerGetAxis(controller, SDL_CONTROLLER_AXIS_LEFTY);
-					if (std::abs(xAxis) < 10000 && std::abs(yAxis) < 10000)
-						continue;
+					if (std::abs(xAxis) < 10000)xAxis = 0;
+					if (std::abs(yAxis) < 10000)yAxis = 0;
 					baseCtrl->MoveLeftStick(xAxis * deltaTime.count(), yAxis * deltaTime.count());
 				}
 				else if (event.caxis.axis == SDL_CONTROLLER_AXIS_RIGHTX || event.caxis.axis == SDL_CONTROLLER_AXIS_RIGHTY) {
@@ -109,7 +109,7 @@ int main(int argc, char* argv[]) {
 						continue;
 					// 根据右摇杆的值计算滚轮的滚动量
 					int scrollAmount = axisValue / 32767.0 * 120; // 滚动量，120是常用的每次滚动的单位
-					baseCtrl->MoveRightStick(0,-scrollAmount);
+					baseCtrl->MoveRightStick(0, -scrollAmount);
 				}
 			}
 		}
