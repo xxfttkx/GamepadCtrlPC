@@ -1,6 +1,9 @@
 #include "Utils.h"
 #include <iostream>
 #include <windows.h>
+#include <fstream>
+#include <filesystem>
+#include <sstream>
 
 void MoveMouse(int x,int y)
 {
@@ -105,4 +108,65 @@ void SimulateSpacebarPress() {
 
 	// 发送输入事件
 	SendInput(2, inputs, sizeof(INPUT));
+}
+std::wstring GetCaptureFilename()
+{
+	std::wstring directory = L"F:\\Cap\\";
+	std::wstring baseFilename = L"screenshot";
+	std::wstring extension = L".bmp";
+
+	// 检查并生成文件名
+	int index = 0;
+	std::wstring filename;
+	do {
+		std::wostringstream oss;
+		oss << directory << baseFilename << (index == 0 ? extension : std::to_wstring(index) + extension);
+		filename = oss.str();
+		index++;
+	} while (std::filesystem::exists(filename));
+
+	return filename;
+}
+
+void CaptureScreen() {
+	std::wstring filename = GetCaptureFilename();
+	HDC hScreenDC = GetDC(NULL);
+	HDC hMemoryDC = CreateCompatibleDC(hScreenDC);
+
+	int width = GetSystemMetrics(SM_CXSCREEN);
+	int height = GetSystemMetrics(SM_CYSCREEN);
+	HBITMAP hBitmap = CreateCompatibleBitmap(hScreenDC, width, height);
+	SelectObject(hMemoryDC, hBitmap);
+	BitBlt(hMemoryDC, 0, 0, width, height, hScreenDC, 0, 0, SRCCOPY);
+
+	BITMAPINFO bmpInfo = { 0 };
+	bmpInfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+	bmpInfo.bmiHeader.biWidth = width;
+	bmpInfo.bmiHeader.biHeight = height; // 正数表示自下而上
+	bmpInfo.bmiHeader.biPlanes = 1;
+	bmpInfo.bmiHeader.biBitCount = 24;
+	bmpInfo.bmiHeader.biCompression = BI_RGB;
+
+	// 获取位图数据
+	BYTE* pPixels = new BYTE[width * height * 3];
+	GetDIBits(hMemoryDC, hBitmap, 0, height, pPixels, &bmpInfo, DIB_RGB_COLORS);
+
+	// 写入文件
+	std::ofstream file(filename, std::ios::binary);
+	BITMAPFILEHEADER fileHeader = { 0 };
+	fileHeader.bfType = 0x4D42; // "BM"
+	fileHeader.bfOffBits = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER);
+	fileHeader.bfSize = fileHeader.bfOffBits + width * height * 3;
+	fileHeader.bfReserved1 = 0;
+	fileHeader.bfReserved2 = 0;
+
+	file.write(reinterpret_cast<const char*>(&fileHeader), sizeof(fileHeader));
+	file.write(reinterpret_cast<const char*>(&bmpInfo.bmiHeader), sizeof(BITMAPINFOHEADER));
+	file.write(reinterpret_cast<const char*>(pPixels), width * height * 3);
+
+	// 清理资源
+	delete[] pPixels;
+	DeleteObject(hBitmap);
+	DeleteDC(hMemoryDC);
+	ReleaseDC(NULL, hScreenDC);
 }

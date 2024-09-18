@@ -5,6 +5,7 @@
 #include "BaseCtrl.h"
 #include "Cursor.h"
 #include "KeyBoard.h"
+#include "Utils.h"
 
 
 
@@ -69,6 +70,22 @@ int main(int argc, char* argv[]) {
 						baseCtrl = &keyboard;
 					else
 						baseCtrl = &cursor;
+				}
+				else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_MISC1) {
+					// capture
+					CaptureScreen();
+				}
+				else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_UP) {
+
+				}
+				else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_DOWN) {
+
+				}
+				else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_LEFT) {
+
+				}
+				else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_RIGHT) {
+
 				}
 			}
 			else if (event.type == SDL_CONTROLLERAXISMOTION) {

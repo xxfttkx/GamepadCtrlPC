@@ -14,6 +14,6 @@ public:
 	void ZRButton() override;
 
 private:
-	float sensitivity = 0.5;
-	float deltaSensitivity = 0.05;
+	float sensitivity = 0.1;
+	float deltaSensitivity = 0.03;
 };

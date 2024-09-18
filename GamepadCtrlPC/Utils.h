@@ -7,3 +7,4 @@ void CloseCurrentWindow();
 void MinimizeCurrentWindow();
 void SimulateEnterKey();
 void SimulateSpacebarPress();
+void CaptureScreen();
