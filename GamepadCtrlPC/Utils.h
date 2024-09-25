@@ -10,3 +10,4 @@ void SimulateEnterKey();
 void SimulateSpacebarPress();
 void CaptureScreen();
 void SimulateKeyPress(WORD key);
+void CheckBatteryPower();

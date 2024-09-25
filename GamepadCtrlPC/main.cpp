@@ -66,10 +66,15 @@ int main(int argc, char* argv[]) {
 					baseCtrl->RButton();
 				}
 				else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_GUIDE) {
-					if (baseCtrl == &cursor)
+					CheckBatteryPower();
+					if (baseCtrl == &cursor){
+						std::cout << "模式改变，现在：keyboard" << std::endl;
 						baseCtrl = &keyboard;
-					else
+					}	
+					else {
+						std::cout << "模式改变，现在：cursor" << std::endl;
 						baseCtrl = &cursor;
+					}
 				}
 				else if (event.cbutton.button == SDL_CONTROLLER_BUTTON_MISC1) {
 					// capture

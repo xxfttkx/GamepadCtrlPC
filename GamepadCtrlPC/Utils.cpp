@@ -4,6 +4,8 @@
 #include <fstream>
 #include <filesystem>
 #include <sstream>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_gamecontroller.h>
 
 void MoveMouse(int x,int y)
 {
@@ -182,4 +184,34 @@ void SimulateKeyPress(WORD key) {
 	// 释放键
 	input.ki.dwFlags = KEYEVENTF_KEYUP; // 设置为释放事件
 	SendInput(1, &input, sizeof(INPUT));
+}
+
+void CheckBatteryPower() {
+	// 获取电源信息
+	int seconds = 0, percent=0;
+	SDL_PowerState powerState = SDL_GetPowerInfo(&seconds,&percent);
+
+	// 输出电源信息
+	std::cout << "Power State: ";
+	switch (powerState) {
+	case SDL_POWERSTATE_UNKNOWN:
+		std::cout << "Unknown" << std::endl;
+		break;
+	case SDL_POWERSTATE_ON_BATTERY:
+		std::cout << "On Battery" << std::endl;
+		break;
+	case SDL_POWERSTATE_NO_BATTERY:
+		std::cout << "No Battery" << std::endl;
+		break;
+	case SDL_POWERSTATE_CHARGING:
+		std::cout << "Charging" << std::endl;
+		break;
+	case SDL_POWERSTATE_CHARGED:
+		std::cout << "Charged" << std::endl;
+		break;
+	}
+
+	if (powerState != SDL_POWERSTATE_NO_BATTERY) {
+		std::cout << "Battery Seconds: " << seconds << "%, Battery Power: " << percent << "%" << std::endl;
+	}
 }
