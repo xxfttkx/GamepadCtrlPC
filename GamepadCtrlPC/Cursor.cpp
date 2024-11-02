@@ -73,7 +73,7 @@ void Cursor::RButton()
 
 void Cursor::ZLButton()
 {
-	SimulateMouseClick();
+	SimulateKeyPress(VK_ESCAPE);
 }
 
 void Cursor::ZRButton()

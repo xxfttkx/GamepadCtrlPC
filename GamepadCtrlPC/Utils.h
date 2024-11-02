@@ -1,5 +1,7 @@
 #pragma once
 #include <windows.h>
+
+void EnableChinese();
 void MoveMouse(int x, int y);
 void SimulateMouseClick();
 void SimulateRightClick();
@@ -11,3 +13,4 @@ void SimulateSpacebarPress();
 void CaptureScreen();
 void SimulateKeyPress(WORD key);
 void CheckBatteryPower();
+void PrintTime();

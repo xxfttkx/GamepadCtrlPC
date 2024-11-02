@@ -7,6 +7,11 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_gamecontroller.h>
 
+void EnableChinese()
+{
+	std::wcout.imbue(std::locale("chs"));
+}
+
 void MoveMouse(int x,int y)
 {
 	POINT p;
@@ -166,6 +171,9 @@ void CaptureScreen() {
 	file.write(reinterpret_cast<const char*>(&bmpInfo.bmiHeader), sizeof(BITMAPINFOHEADER));
 	file.write(reinterpret_cast<const char*>(pPixels), width * height * 3);
 
+	PrintTime();
+	std::wcout << L"Capture Success: " << filename << std::endl;
+
 	// 清理资源
 	delete[] pPixels;
 	DeleteObject(hBitmap);
@@ -214,4 +222,22 @@ void CheckBatteryPower() {
 	if (powerState != SDL_POWERSTATE_NO_BATTERY) {
 		std::cout << "Battery Seconds: " << seconds << "%, Battery Power: " << percent << "%" << std::endl;
 	}
+}
+
+void PrintTime()
+{
+	// 获取当前时间点
+	auto now = std::chrono::system_clock::now();
+
+	// 转换为 time_t 类型
+	std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
+
+	// 转换为本地时间
+	std::tm localTime;
+	localtime_s(&localTime, &currentTime);
+
+	// 格式化并输出时间
+	std::cout << "[" 
+		<< std::put_time(&localTime, "%Y-%m-%d %H:%M:%S")
+		<< "] ";
 }

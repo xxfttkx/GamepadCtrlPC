@@ -12,10 +12,10 @@ void Keyboard::MoveLeftStick(int x, int y)
 
 void Keyboard::MoveRightStick(int x, int y)
 {
-	if (x > 100)SimulateKeyPress(VK_RIGHT);
-	else if (x < -100)SimulateKeyPress(VK_LEFT);
-	if (y > 100)SimulateKeyPress(VK_UP);
-	else if (y < -100)SimulateKeyPress(VK_DOWN);
+	if (x > 10)SimulateKeyPress(VK_RIGHT);
+	else if (x < -10)SimulateKeyPress(VK_LEFT);
+	if (y > 10)SimulateKeyPress(VK_UP);
+	else if (y < -10)SimulateKeyPress(VK_DOWN);
 }
 
 void Keyboard::AButton()
