@@ -130,7 +130,7 @@ int main(int argc, char* argv[]) {
 					if (std::abs(xAxis) < 10000)xAxis = 0;
 					if (std::abs(yAxis) < 10000)yAxis = 0;
 					if (xAxis == 0 && yAxis == 0)continue;
-					baseCtrl->MoveLeftStick(xAxis * deltaTime.count(), yAxis * deltaTime.count());
+					baseCtrl->MoveRightStick(xAxis * deltaTime.count(), yAxis * deltaTime.count());
 				}
 			}
 		}

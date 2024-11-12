@@ -14,7 +14,7 @@ void Cursor::MoveLeftStick(int x, int y)
 
 void Cursor::MoveRightStick(int x, int y)
 {
-	SimulateMouseWheelScroll(y*rightSensitivity);
+	SimulateMouseWheelScroll(-y*rightSensitivity);
 }
 
 void Cursor::AButton()
