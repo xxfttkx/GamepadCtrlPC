@@ -24,6 +24,7 @@ void SimulateMouseClick() {
 	input.type = INPUT_MOUSE;
 	input.mi.dwFlags = MOUSEEVENTF_LEFTDOWN; // 按下鼠标左键
 	SendInput(1, &input, sizeof(INPUT));    // 发送按下事件
+	SDL_Delay(100);
 
 	input.mi.dwFlags = MOUSEEVENTF_LEFTUP;   // 松开鼠标左键
 	SendInput(1, &input, sizeof(INPUT));    // 发送松开事件
@@ -38,7 +39,7 @@ void SimulateRightClick() {
 	// 模拟按下鼠标右键
 	input.mi.dwFlags = MOUSEEVENTF_RIGHTDOWN;
 	SendInput(1, &input, sizeof(INPUT));
-
+	SDL_Delay(100);
 	// 模拟释放鼠标右键
 	input.mi.dwFlags = MOUSEEVENTF_RIGHTUP;
 	SendInput(1, &input, sizeof(INPUT));
@@ -86,6 +87,7 @@ void MinimizeCurrentWindow() {
 }
 
 // 模拟按下和释放 Enter 键
+
 void SimulateEnterKey() {
 	// 设置 INPUT 结构体
 	INPUT ip;
