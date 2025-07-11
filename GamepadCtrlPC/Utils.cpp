@@ -25,7 +25,7 @@ void SimulateMouseClick() {
 	input.mi.dwFlags = MOUSEEVENTF_LEFTDOWN; // 按下鼠标左键
 	SendInput(1, &input, sizeof(INPUT));    // 发送按下事件
 	SDL_Delay(100);
-
+ 
 	input.mi.dwFlags = MOUSEEVENTF_LEFTUP;   // 松开鼠标左键
 	SendInput(1, &input, sizeof(INPUT));    // 发送松开事件
 }

@@ -1,11 +1,21 @@
-#include "Cursor.h"
+﻿#include "Cursor.h"
 #include <windows.h>
+#include <cmath> // 替换 <math.h> 为 <cmath>，以确保 std::sqrt 可用
 #include "Utils.h"
 
 void Cursor::MoveLeftStick(int x, int y)
 {
-	int xDelta = static_cast<int>(x * leftSensitivity);
-	int yDelta = static_cast<int>(y * leftSensitivity);
+	speed = maxSpeed;
+	if (speed < maxSpeed)
+	{
+		speed += acceleration;
+	}
+	else
+	{
+		speed = maxSpeed;
+	}
+	int xDelta = static_cast<int>(x * leftSensitivity * speed);
+	int yDelta = static_cast<int>(y * leftSensitivity * speed);
 	if (xDelta != 0 || yDelta != 0)
 	{
 		MoveMouse(xDelta, yDelta);
@@ -14,6 +24,7 @@ void Cursor::MoveLeftStick(int x, int y)
 
 void Cursor::MoveRightStick(int x, int y)
 {
+	speed = 0;
 	SimulateMouseWheelScroll(-y*rightSensitivity);
 }
 
