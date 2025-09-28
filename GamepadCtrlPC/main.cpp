@@ -6,16 +6,14 @@
 #include "Cursor.h"
 #include "KeyBoard.h"
 #include "Utils.h"
-
-
-
+#include <string>
 
 int main(int argc, char* argv[]) {
+	EnableChinese();
 	if (SDL_Init(SDL_INIT_GAMECONTROLLER) != 0) {
 		std::cerr << "Error initializing SDL: " << SDL_GetError() << std::endl;
 		return -1;
 	}
-
 	SDL_GameController* controller = nullptr;
 	bool found = false;
 	while (!found)
@@ -25,7 +23,7 @@ int main(int argc, char* argv[]) {
 			if (SDL_IsGameController(i)) {
 				controller = SDL_GameControllerOpen(i);
 				if (controller) {
-					std::cout << "Controller connected!" << std::endl;
+					Log("Controller connected!");
 					found = true;
 					break;
 				}
@@ -33,31 +31,31 @@ int main(int argc, char* argv[]) {
 		}
 		if (!found)
 		{
-			PrintTime();
-			std::cout << "Controller not found!" << std::endl;
+			Log("Controller not found!");
 			SDL_Delay(10000);
 		}
 	}
-	
-
 	if (!controller) {
 		std::cerr << "No controller found!" << std::endl;
 		SDL_Quit();
 		return -1;
 	}
-	EnableChinese();
+	
 	SDL_Event event;
 	bool running = true;
 	auto lastTime = std::chrono::high_resolution_clock::now();
 	Cursor cursor;
 	Keyboard keyboard;
 	BaseCtrl* baseCtrl = &cursor;
+	std::cout << "Mapping: " << SDL_GameControllerMapping(controller) << std::endl;
 	while (running) {
 		while (SDL_PollEvent(&event)) {
+			Log("Event Type: " + std::to_string(event.type));
 			if (event.type == SDL_QUIT) {
 				running = false;
 			}
 			else if (event.type == SDL_CONTROLLERBUTTONDOWN) {
+				Log("Button Pressed: " + std::to_string(event.cbutton.button));
 				if (event.cbutton.button == SDL_CONTROLLER_BUTTON_A) {
 					baseCtrl->AButton();
 				}

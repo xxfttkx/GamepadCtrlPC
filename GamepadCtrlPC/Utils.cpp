@@ -6,6 +6,7 @@
 #include <sstream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_gamecontroller.h>
+#include <string>
 
 void EnableChinese()
 {
@@ -242,4 +243,9 @@ void PrintTime()
 	std::cout << "[" 
 		<< std::put_time(&localTime, "%Y-%m-%d %H:%M:%S")
 		<< "] ";
+}
+
+void Log(const std::string message) {
+	PrintTime();
+	std::cout << message << std::endl;
 }

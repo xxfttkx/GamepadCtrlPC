@@ -1,5 +1,6 @@
 #pragma once
 #include <windows.h>
+#include <string>
 
 void EnableChinese();
 void MoveMouse(int x, int y);
@@ -14,3 +15,4 @@ void CaptureScreen();
 void SimulateKeyPress(WORD key);
 void CheckBatteryPower();
 void PrintTime();
+void Log(std::string s);

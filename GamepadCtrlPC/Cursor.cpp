@@ -5,7 +5,7 @@
 
 void Cursor::MoveLeftStick(int x, int y)
 {
-	speed = maxSpeed;
+	speed = maxSpeed; 
 	if (speed < maxSpeed)
 	{
 		speed += acceleration;
